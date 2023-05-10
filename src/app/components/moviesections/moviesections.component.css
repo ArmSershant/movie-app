@@ -1,0 +1,44 @@
+.tab {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 12px 24px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+img {
+  display: inline-block;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-position: center center !important;
+}
+
+body{
+  box-sizing: border-box !important;
+}
+
+
+#vote_average_circle {
+  border-radius: 50%;
+  transform: rotate(-90deg);
+}
+
+#vote_average_circle::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+#vote_average_circle {
+  background-image: conic-gradient(
+    red 0%,
+    red 50%,
+    green 50%,
+    green 100%
+  );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+

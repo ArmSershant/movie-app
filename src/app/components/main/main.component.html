@@ -1,0 +1,340 @@
+<main class="w-full flex flex-wrap content-start justify-center bg-white mt-16">
+  <section
+    class="min-h-fit h-2/5 bg-cover bg-no-repeat max-h-96 text-white bg-[url('https://source.unsplash.com/1300x900/?portrait')]"
+  >
+    <!-- media discover -->
+    <div class="h-full flex content-start items-start justify-center">
+      <!-- column wrapper -->
+      <div
+        class="w-[1300px] h-[300px] flex justify-center item-start content-start"
+      >
+        <!-- content wrapper -->
+        <div class="flex flex-wrap w-full px-10 py-8 items-start content-start">
+          <!-- title -->
+          <div class="w-full mb-5">
+            <h2 class="font-bold text-[3em] m-0 p-0 w-full">Welcome.</h2>
+            <h3 class="font-semibold leading-8 m-0 text-[2em]">
+              Millions of movies, TV shows and people to discover. Explore now.
+            </h3>
+          </div>
+          <!-- search -->
+          <div class="w-full">
+            <form action="" class="mt-8 relative top-0 left-0">
+              <label>
+                <input
+                  type="text"
+                  placeholder="Search for a movie, tv show, person......"
+                  class="w-full h-11 leading-10 text-base text-black border-[1px] rounded-[30px] py-[10px] px-[20px] focus:border-none focus:outline-none"
+                />
+              </label>
+              <input
+                value="Search"
+                type="submit"
+                class="inline-flex justify-center items-center h-[46px] py-[10px] px-[26px] border-none rounded-[30px] absolute top-[-1px] right-[-1px] text-white font-bold bg-gradient-to-r from-green-300 to-blue-300 cursor-pointer"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Trending -->
+  <app-moviesections
+    title="Trending"
+    [tabs]="['Today', 'This week']"
+    [bgImg]="true"
+  ></app-moviesections>
+  <!-- latest trailers -->
+  <section
+    *ngIf="trailers$ | async as trailers"
+    class="flex flex-wrap bg-cover bg-no-repeat text-white transition duration-500 ease-linear delay-0 h-[401px] max-w-[1300px] justify-center items-start content-start w-full box-border p-0 bg-[url('https://source.unsplash.com/user/c_v_r/1300x900')] text-[1em]"
+  >
+    <!-- column wrapper -->
+    <div
+      class="flex bg-gradient-to-r from-blue-850 to-blue-950 w-full justify-center content-start items-start box-border"
+    >
+      <!-- trailer scroller -->
+      <div class="relative top-0 left-0 box-border">
+        <!-- content wrapper -->
+        <div
+          class="flex px-0 flex-wrap max-w-[1300px] items-start pt-[30px] pb-0 box-border w-[1300px] h-[300px] justify-center item-start content-start"
+        >
+          <!-- column -->
+          <div class="box-border w-full block text-white">
+            <!-- column header -->
+            <div
+              class="px-[40px] text-white flex justify-start items-center content-center box-border"
+            >
+              <h2
+                class="m-0 p-0 mr-[20px] whitespace-nowrap text-[1.5em] box-border"
+              >
+                Last Trailers
+              </h2>
+              <!-- selector wrap -->
+              <div class="flex box-border">
+                <!-- selector -->
+                <div
+                  (click)="getMoviesByGenre(tab)"
+                  class="border-solid items-stretch content-center justify-start rounded-[30px] border-green-600 box-border text-[1em]"
+                  *ngFor="let tab of tabs2"
+                >
+                  <!-- anchor -->
+                  <div
+                    class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
+                  >
+                    <ul class="flex flex-wrap -mb-px">
+                      <li class="mr-2">
+                        <a
+                          class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 cursor-pointer"
+                          >{{ tab }}</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- column content -->
+            <div
+              class="flex scrollbar-thin scrollbar-thumb-pink-300 min-h-0 h-auto w-full max-w-[1300px] overflow-x-scroll overflow-y-hidden transition duration-500 ease-linear delay-0 justify-start items-start py-[20px] box-border"
+            >
+              <!-- card video -->
+              <div
+                *ngFor="let trailer of trailers.results"
+                class="flex flex-wrap m-3 w-[300px] min-w-[300px] max-w-[300px] h-auto bg-transparent border-none shadow-none items-start whitespace-nowrap text-white box-border"
+              >
+                <!-- image -->
+                <div
+                  class="min-w-[300px] w-[300px] h-[168.5px] transition duration-200 ease-in-out delay-0 scale-[1] overflow-hidden box-border whitespace-nowrap text-[1em] hover:scale-105"
+                >
+                  <!-- wrapper -->
+                  <div
+                    class="block overflow-hidden relative top-0 left-0 min-w-[100%] w-full h-full rounded-[8px] bg-no-repeat bg-cover whitespace-nowrap box-border text-white text-[1em]"
+                  >
+                    <a href="" class="block w-full h-full text-black">
+                      <!-- each video -->
+                      <img
+                        [src]="
+                          'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces' +
+                          trailer.backdrop_path
+                        "
+                        loading="lazy"
+                        [alt]="trailer.original_title"
+                        class="block w-full h-full text-white text-[1em] bg-contain"
+                      />
+                      <!-- play -->
+                      <div
+                        class="w-[300px] h-[168.5px] absolute top-0 left-0 flex justify-center items-center text-[4em] box-border"
+                      >
+                        <img
+                          src="https://www.freeiconspng.com/thumbs/play-button-icon-png/play-button-icon-png-0.png"
+                          class="relative top-0 left-0 inline-flex items-center min-w-[1em] min-h-[1em] w-[1em] h-[1em] leading-[inherit] bg-no-repeat box-border bg"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                  <!-- options -->
+                  <div
+                    class="absolute top-[8px] right-[8px] z-4 opacity-[0.4] hover:opacity-100"
+                  >
+                    <a href="" class="no-underline font-normal bg-transparent">
+                      <img
+                        class="text-[1.6em] relative top-0 left-0 inline-flex items-center content-center min-w-[1em] min-h-[1em] w-[1em] h-[1em] leading-[inherit] bg-no-repeat box-border"
+                        src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-947-circle-more-white-4c440dfc1b0e626c70f4853dbbce9c4d1f2c5d8f3e05a7d3df47881cbd816adf.svg"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <!-- content -->
+                <div
+                  class="w-full relative whitespace-normal text-white flex content-start flex-wrap pt-[26px] pb-[10px] pl-[12px] pr-[10px]"
+                >
+                  <h2 class="text-center items-center">
+                    <a href="" [title]="trailer.original_title">{{
+                      trailer.original_title
+                    }}</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- What's Popular -->
+  <app-moviesections
+    title="What's Popular"
+    [tabs]="['Streaming', 'On TV', 'For Rent', 'In Teathers']"
+  ></app-moviesections>
+  <!-- Free To Watch -->
+  <app-moviesections
+    title="Free To Watch"
+    [tabs]="['Movies', 'TV']"
+  ></app-moviesections>
+  <!-- Join Today -->
+  <section
+    class="bg-cover bg-no-repeat text-white transition-all max-w-[1300px] max-h-[280px] flex flex-wrap justify-center items-start content-start w-100 box-border bg-[url('https://source.unsplash.com/1300x220/?portrait')]"
+  >
+    <!-- column wrapper -->
+    <div class="w-full flex justify-center items-start content-start">
+      <!-- content wrapper -->
+      <div
+        class="max-w-[1300px] w-full flex items-start content-start px-10 py-[30px] flex-wrap box-border"
+      >
+        <!-- column -->
+        <div class="w-full box-border block">
+          <!-- column header -->
+          <div
+            class="flex justify-start items-center content-center box-border text-white"
+          >
+            <h2
+              class="font-bold whitespace-nowrap m-0 p-0 box-border text-[2em]"
+            >
+              Join Today
+            </h2>
+          </div>
+          <!-- column content -->
+          <div
+            class="flex justify-start items-start content-start py-[20px] box-border"
+          >
+            <!-- column1 -->
+            <div class="w-[65%] text-[.9em] m-0 mr-10 box-border block">
+              <p class="text-[1.2em] m-0 p-0 box-border">
+                Get access to maintain your own
+                <em class="opacity-[0.7]">custom personal lists</em>,<em
+                  class="opacity-[0.7]"
+                  >track what you've seen</em
+                >
+                and search and filter for
+                <em class="opacity-[0.7]">what to watch next</em>—regardless if
+                it's in theatres, on TV or available on popular streaming
+                services like Okko, Amediateka, Apple TV Plus, MUBI, and
+                GuideDoc.
+              </p>
+              <p class="mb-[10px] mt-[30px] text-">
+                <!-- <a href="">Sign Up</a> -->
+                <a
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded cursor-pointer"
+                >
+                  Sign Up
+                </a>
+              </p>
+            </div>
+            <!-- column2 -->
+            <div class="w-auto m-0 box-border block text-white">
+              <ul
+                *ngFor="let text of joinText"
+                class="list-disc list-outside ml-5 box-border"
+              >
+                <li class="opacity-[0.8] m-0 box-border list-item text-[.9em]">
+                  {{ text }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Leaderboard -->
+  <section
+    class="mb-[10px] max-w-[1300px] flex flex-wrap justify-center items-start content-center w-full box-border bg-cover bg-no-repeat"
+  >
+    <!-- column wrapper -->
+    <div
+      class="w-full flex justify-center items-start content-start box-border"
+    >
+      <!-- content wrapper -->
+      <div
+        class="max-w-[1300px] w-full flex items-start content-start px-10 py-[30px] flex-wrap box-border"
+      >
+        <!-- column -->
+        <div class="w-full">
+          <!-- column header -->
+          <div
+            class="flex justify-start items-center content-center box-border"
+          >
+            <h2 class="text-[1.5em] font-semibold">Leaderboard</h2>
+            <ul class="box-border block list-outside list-disc ml-6">
+              <li class="flex items-center content-center p-0 m-0 text-[0.9em]">
+                <span
+                  class="inline-block h-2 w-2 rounded-full bg-gradient-to-r from-green-300 to-blue-300"
+                ></span>
+                All Time Edits
+              </li>
+              <li class="flex items-center content-center p-0 m-0 text-[0.9em]">
+                <span
+                  class="inline-block h-2 w-2 rounded-full bg-gradient-to-r from-yellow-300 to-red-300"
+                ></span>
+                Edits This Week
+              </li>
+            </ul>
+          </div>
+          <!-- column content -->
+          <div class="pt-5 box-border block">
+            <ol
+              class="w-full m-0 p-0 list-inside list-none flex flex-wrap box-border"
+            >
+              <li
+                *ngFor="let user of data"
+                class="pr-[10px] p-0 m-0 flex items-center content-center w-1/2 mb-5 box-border"
+              >
+                <span
+                  class="min-w-[56px] w-[56px] h-[56px] mr-[10px] box-border list-inside list-none"
+                >
+                  <a href="" class="m-0 p-0 text-black">
+                    <img
+                      class="rounded-[50%] border-none m-0 p-0"
+                      src="https://source.unsplash.com/user/c_v_r/45x45"
+                      [alt]="user.name"
+                    />
+                  </a>
+                </span>
+                <div
+                  class="w-full flex items-center content-center flex-wrap box-border"
+                >
+                  <h3 class="leading-[1] text-[1.2em] m-0 p-0 text-black w-full">
+                    <a
+                      href=""
+                      class="m-0 p-0 text-black hover:text-green-600"
+                      >{{ user.name }}</a
+                    >
+                  </h3>
+                  <!-- progress bar1 -->
+                  <div class="w-full rounded-full h-1.5 mb-4">
+                    <div
+                      class="h-2 rounded-full bg-gradient-to-r from-green-300 to-blue-300 dark:bg-blue-500"
+                      [style.width.%]="user.firstNumber / 20000"
+                    >
+                      <div>
+                        <h4
+                          class="m-0 p-0 text-[.9em] ml-[10px] text-black relative left-[20rem] bottom-[1rem] font-semibold"
+                        >
+                          {{ user.firstNumber }}
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- progress bar2 -->
+                  <div class="w-full rounded-full h-1.5 mb-4">
+                    <div
+                      class="h-2 rounded-full bg-gradient-to-r from-yellow-300 to-red-300 dark:bg-blue-500"
+                      [style.width.%]="user.secondNumber / 20000"
+                    >
+                      <h4
+                        class="m-0 p-0 text-[.9em] ml-[10px] text-black relative left-[20rem] bottom-[1rem] font-semibold"
+                      >
+                        {{ user.secondNumber }}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

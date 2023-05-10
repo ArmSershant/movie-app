@@ -1,0 +1,78 @@
+<footer
+  class="max-w-full w-[100vw] box-border p-0 bg-gray-900 bg-cover bg-no-repeat flex flex-wrap items-center content-between justify-center"
+>
+  <nav class="flex  text-white py-[100px]">
+    <div
+      class="text-right relative top-[-36px] right-0 mr-10 min-w-0 box-border"
+    >
+      <img
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+        alt="The Movie Database (TMDB)"
+        width="130"
+        height="94"
+        class="block absolute top-0 right-0 outline-none box-border"
+      />
+      <a
+        href=""
+        class="relative border-white top-[140px] bg-white text-blue-500 text-[1.3em] font-bold inline-block break-words whitespace-normal border-2 border-solid rounded-[5px] py-[8px] px-[16px] transition-all delay-[0.1s]"
+        >JOIN THE COMMUNITY</a
+      >
+    </div>
+    <div class="mr-10 min-w-0 box-border block text-[0.9em]">
+      <h3
+        class="font-bold text-[1.4em] leading-[1.4em] uppercase text-white whitespace-nowrap"
+      >
+        THE BASICS
+      </h3>
+      <ul *ngFor="let first of firstCol">
+        <li
+          class="leading-[1.6em] max-w-[260px] whitespace-nowrap overflow-hidden text-ellipsis text-white"
+        >
+          <a class="text-[1.2em]" href="">{{ first }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mr-10 min-w-0 box-border block text-[0.9em]">
+      <h3
+        class="font-bold text-[1.4em] leading-[1.4em] uppercase text-white whitespace-nowrap"
+      >
+        GET INVOLVED
+      </h3>
+      <ul *ngFor="let second of secondCol">
+        <li
+          class="leading-[1.6em] max-w-[260px] whitespace-nowrap overflow-hidden text-ellipsis text-white"
+        >
+          <a class="text-[1.2em]" href="">{{ second }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mr-10 min-w-0 box-border block text-[0.9em]">
+      <h3
+        class="font-bold text-[1.4em] leading-[1.4em] uppercase text-white whitespace-nowrap"
+      >
+        COMMUNITY
+      </h3>
+      <ul *ngFor="let third of thirdCol">
+        <li
+          class="leading-[1.6em] max-w-[260px] whitespace-nowrap overflow-hidden text-ellipsis text-white"
+        >
+          <a class="text-[1.2em]" href="">{{ third }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mr-10 min-w-0 box-border block text-[0.9em]">
+      <h3
+        class="font-bold text-[1.4em] leading-[1.4em] uppercase text-white whitespace-nowrap"
+      >
+        LEGAL
+      </h3>
+      <ul *ngFor="let fourth of fourthCol">
+        <li
+          class="leading-[1.6em] max-w-[260px] whitespace-nowrap overflow-hidden text-ellipsis text-white"
+        >
+          <a class="text-[1.2em]" href="">{{ fourth }}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</footer>
